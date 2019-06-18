@@ -1,0 +1,52 @@
+pragma solidity >=0.4.22 <0.6.0;
+
+contract Treatment_Patient_Treatment {
+    
+    struct Treatment {
+        uint256 recordId;
+        bytes32 treatmentId;
+        bytes32 hashId;
+    }
+    mapping(uint256=>Treatment) treatments;
+    
+    function addTreatment(uint256 recordId, bytes32 treatmentId, bytes32 hashId) public {
+      
+        treatments[recordId].treatmentId = treatmentId;
+        treatments[recordId].hashId = hashId;
+    }
+    
+    function getTreatmentByRecordId(uint256 recordId) view public returns( bytes32 treatmentId, bytes32 hashId) {
+        return( treatments[recordId].treatmentId, treatments[recordId].hashId);
+    }
+
+    
+    struct PatientTreatment {
+        
+        uint256 recordId;
+        bytes32 treatmentId;
+        bytes32 hashId;
+        bytes32 patientTreatmentId;
+        bytes32 ptPfNo;
+     
+        
+    }
+    mapping(uint256=>PatientTreatment) patientTreatments;
+    
+    function addPatientTreatment(uint256 recordId, bytes32 patientTreatmentId, bytes32 ptPfNo, bytes32 treatmentId, bytes32 hashId) public {
+        patientTreatments[recordId].recordId = recordId;
+        patientTreatments[recordId].patientTreatmentId = patientTreatmentId;
+        patientTreatments[recordId].ptPfNo = ptPfNo;
+        patientTreatments[recordId].treatmentId = treatmentId;
+        patientTreatments[recordId].hashId = hashId;
+    }
+    
+    function getPatientTreatment(uint256 recordId) view public returns( bytes32, bytes32, bytes32,  bytes32) {
+        return(
+            
+        patientTreatments[recordId].patientTreatmentId, 
+        patientTreatments[recordId].ptPfNo, 
+        patientTreatments[recordId].treatmentId, 
+        patientTreatments[recordId].hashId);
+    }
+    
+}

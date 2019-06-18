@@ -1,0 +1,5 @@
+
+sudo ./geth --datadir nodedata --networkid 4044 --rpcport 8003 --rpcaddr 192.168.15.104 --port 30303 --rpc --rpcapi="db,eth,net,web3,personal,miner, admin" --targetgaslimit 0x0800000000000000 --maxpeers 3 --nat=any --nodiscover --rpccorsdomain "*"  console
+
+
+sudo ./geth --datadir nodedata --networkid 4044 --rpcport 8003 --rpcaddr 192.168.15.103 --port 30303 --rpc --rpcapi="db,eth,net,web3,personal,miner, admin" --targetgaslimit 0x0800000000000000 --maxpeers 3 --nat=any --nodiscover --rpccorsdomain "*"  console

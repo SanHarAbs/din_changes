@@ -1,0 +1,66 @@
+Address contractAddress = w3.toChecksumAddress("0x5100f89ef8246175cd0c8b5dda40fe51ae3d202d")
+
+
+pragma solidity >=0.4.22 <0.6.0;
+
+contract PatientInformation {
+
+    struct Patient {
+        uint recid;
+        bytes32 pfNo;
+        bytes32 ptName;
+        bytes32 deathreason;
+        int dob;
+        int dod;
+        int duplicateno;
+        bool Isdead;
+        uint256 contact;
+        bytes32 HashID;
+    }
+    
+    mapping(uint=>Patient) patients;
+    
+
+    function addPatient(uint recid, bytes32 pfNo, bytes32 ptName, int dob, int dod,
+                        int duplicateno, bool Isdead,uint contact, 
+                        bytes32 HashID, bytes32 deathreason) 
+        
+        public {
+        patients[recid].pfNo = pfNo;
+        patients[recid].ptName = ptName;
+        patients[recid].dob = dob;
+        patients[recid].dod = dod;
+        patients[recid].duplicateno = duplicateno;
+        patients[recid].Isdead = Isdead;
+        patients[recid].contact = contact;
+        patients[recid].HashID = HashID;
+        patients[recid].deathreason = deathreason;
+    }
+    
+   
+    function getPatientbyrecordid(uint recid) view public returns (bytes32, bytes32, int, int, bytes32) 
+        {
+        
+        return (
+        patients[recid].pfNo ,
+        patients[recid].ptName,
+        patients[recid].dob ,
+        patients[recid].duplicateno,
+        patients[recid].HashID
+        
+                );
+    }
+    
+    
+    function getPatientdetails(uint recid) view public returns (int , bool ,uint256 ,bytes32  ) 
+        {
+        
+        return (
+        
+        patients[recid].dod,
+        patients[recid].Isdead,
+        patients[recid].contact,
+        patients[recid].deathreason );
+    }
+    
+}

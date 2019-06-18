@@ -1,0 +1,178 @@
+
+<html>
+        <head>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                </head>
+<body>
+    <p><input type="button" onclick="sendrequest()" value="Add patient" ></p>
+
+    <p><input type="button" onclick="sendrequest(true)" value="Modify Patient" ></p>
+
+    <p><input type="button" onclick="testhospital()" value="Add Hospital" ></p>
+
+    <p><input type="button" onclick="testhospital(true)" value="Modify Hospital" ></p>
+
+
+
+    
+    <p><input type="button" onclick="Addtreatment()" value="Add New Treatment" ></p>
+
+    <p><input type="button" onclick="Addtreatment(true)" value="Modify treatment" ></p>
+
+
+    <p><input type="button" onclick="Addpatienttreatment()" value="Add Patient Treatment" ></p>
+
+    <p><input type="button" onclick="Addpatienttreatment(true)" value="Modify Patient treatment" ></p>
+
+
+
+    <div>
+        <div id="errorCode"></div>
+        <div id="errormessage"></div>
+    </div>
+
+    <script>
+        function sendrequest(isupdate)
+        {   
+        data={patientname: 'MOHAMED B KISUA_update', pfno: '209800111391',dob: '1986-07-01',contact:'0710289511',dod:'0'
+            ,isdead:0,reasonOfdeath:''}
+        url = ''
+        if(isupdate)
+            url = 'http://127.0.0.1:5000/api/modifypatient'
+        else
+            url = 'http://127.0.0.1:5000/api/createPatient'
+        $.ajax({
+            url: url,
+            type: 'POST',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(data),
+            success: function (response) {
+                console.log(response)
+                //printmessage(response.status,response.responseJSON);
+            },
+            error(response){
+            
+               // printmessage(response.status,response.responseJSON);
+            }
+        });
+}
+
+
+function testhospital(isupdate)
+        {   
+        data={hospitalname: 'Block test 1311_update',registrationNo: 'register141', address:'Addrss 2589, gali',bedcount:"10", hospitaltype:'1'}
+        url = ''
+            if(isupdate)
+                url = 'http://127.0.0.1:5000/api/modifyhospital'
+            else
+                url = 'http://127.0.0.1:5000/api/createhospital'
+            $.ajax({
+                url: url,
+                type: 'POST',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(data),
+                success: function (response) {
+                   // printmessage(response.status,response.responseJSON);
+                },
+                error(response){
+
+                    //printmessage(response.status,response.responseJSON);
+                }
+});
+}
+
+
+function Addtreatment(isupdate)
+        {   
+        data={hospitalname: 'JP Hospital JP Hospital',registrationNo: 'AfterNoida12-44559999-abc', address:'Addrss 2589, gali',bedcount:50, hospitaltype:'1'}
+        url = ''
+            if(isupdate)
+                url = 'http://127.0.0.1:5000/api/modifyhospital'
+            else
+                url = 'http://127.0.0.1:5000/api/createhospital'
+            $.ajax({
+                url: url,
+                type: 'POST',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(data),
+                success: function (response) {
+                   // printmessage(response.status,response.responseJSON);
+                },
+                error(response){
+
+                    //printmessage(response.status,response.responseJSON);
+                }
+});
+}
+
+
+
+
+function Addtreatment(isupdate)
+        {   
+        data={treatmentName: 'TName000001'}
+        if(isupdate)
+            data={treatmentName: 'TName000001_update',treatmentId : "t20190518152145602920" }
+        
+            url = ''
+            if(isupdate)
+                url = 'http://127.0.0.1:5000/api/updateTreatmentByTreatmentId'
+            else
+                url = 'http://127.0.0.1:5000/api/addTreatment'
+            $.ajax({
+                url: url,
+                type: 'POST',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(data),
+                success: function (response) {
+                   // printmessage(response.status,response.responseJSON);
+                },
+                error(response){
+
+                    //printmessage(response.status,response.responseJSON);
+                }
+});
+}
+
+
+function Addpatienttreatment(isupdate)
+        {   
+        data={ptPfNo: '01-10228108',treatmentId: 't20190518152145602920', patientDetails:'{"name":"Mohit Dagar 123","CheckDataForm":"DataForm Data"}',isTest:2}
+        if(isupdate)
+         data={ptPfNo: '01-10228108',treatmentId: 't20190518152145602920', patientDetails:'{name:Mohit123}',patientTreatmentId:'pt20190518180446940635'}
+        url = ''
+            if(isupdate)
+                url = 'http://127.0.0.1:5000/api/updatePatientTreatmentByPatientTreatmentId' 
+            else
+                url = 'http://127.0.0.1:5000/api/addPatientTreatment'
+            $.ajax({
+                url: url,
+                type: 'POST',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(data),
+                success: function (response) {
+                   // printmessage(response.status,response.responseJSON);
+                },
+                error(response){
+
+                    //printmessage(response.status,response.responseJSON);
+                }
+});
+}
+
+
+    function printmessage(errorcode,message){
+                modifymessage = 'code:' +  errorcode + ' ==>  Message:  '+ message.Result
+                $("#errorCode").text(modifymessage)
+                
+        }
+        function insertmultiplepatient(){
+                for(i=0; i<10;i++)
+                    {
+
+                    }
+
+        }
+    </script>
+    </body>
+</html>

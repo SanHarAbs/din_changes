@@ -1,0 +1,27 @@
+CREATE TABLE treatment (
+  record_id NVARCHAR(455),
+  treatment_id NVARCHAR(455),
+  treatment_name NVARCHAR(455) NOT NULL,
+  version_no INT(11) NOT NULL,
+  add_date DATE NOT NULL,
+  hash_id NVARCHAR(1000) DEFAULT NULL,
+  PRIMARY KEY (record_id),
+  UNIQUE KEY (treatment_id, treatment_name),
+  UNIQUE KEY (hash_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE patient_treatment (
+  record_id NVARCHAR(455),
+  patient_treatment_id NVARCHAR(455),
+  pt_pf_no NVARCHAR(355) NOT NULL,
+  treatment_id NVARCHAR(455), 
+  pt_details JSON,
+  version_no INT(11) NOT NULL,
+  add_date DATE NOT NULL,
+  hash_id NVARCHAR(1000) DEFAULT NULL,
+  PRIMARY KEY (record_id),
+  UNIQUE KEY (pt_pf_no, treatment_id),
+  UNIQUE KEY (hash_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
